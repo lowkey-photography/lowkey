@@ -17,23 +17,25 @@ function App() {
     }, []);
     return (
         <>
-            <div>
-                <div className="sidebar">
-                    <div className="sidebarTitle">lowkey</div>
-                    <ul className="sidebarProjectList">
-                        {projectList.map((item, index) => (
-                            <li key={index}>{item.projectName}</li>
-                        ))}
-                    </ul>
+            {!loading && (
+                <div className="rootContainer">
+                    <div className="sidebar">
+                        <div className="sidebarTitle">lowkey</div>
+                        <ul className="sidebarProjectList">
+                            {projectList.map((item, index) => (
+                                <li key={index}>{item.projectName}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="gallery">
+                        <ul className="galleryProjectList">
+                            {projectList.map((item, index) => (
+                                <li key={index}>{item.projectName}</li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-                <div className="gallery">
-                    <ul className="galleryProjectList">
-                        {projectList.map((item, index) => (
-                            <li key={index}>{item.projectName}</li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
+            )}
         </>
     );
 }
