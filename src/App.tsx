@@ -1,37 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
-
-interface PortfolioProject {
-    projectName: string;
-    coverImageUrl: string;
-    imageUrls: string[];
-}
+import { ListPhotosResponse, PhotoService } from "./service";
 
 function App() {
-    const [projectList, setProjects] = useState(Array<PortfolioProject>());
+    const [projects, setProjects] = useState({} as ListPhotosResponse);
     const [loading, setLoading] = useState(true);
+    const photoService = useMemo(() => {
+        return new PhotoService();
+    }, []);
 
     useEffect(() => {
-        setLoading(false);
-        setProjects([]);
-    }, []);
+        const fetchProjects = async () => {
+            try {
+                const response = await photoService.listPhotos();
+                setProjects(response);
+            } catch (error) {
+                console.error(`error fetching projects: ${error}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProjects();
+    }, [photoService]);
+
     return (
         <>
+            {loading && <div>Loading...</div>}
             {!loading && (
                 <div className="rootContainer">
                     <div className="sidebar">
                         <div className="sidebarTitle">lowkey</div>
                         <ul className="sidebarProjectList">
-                            {projectList.map((item, index) => (
-                                <li key={index}>{item.projectName}</li>
-                            ))}
+                            {projects &&
+                                Array.from(projects.projects.keys()).map(
+                                    (item, index) => <li key={index}>{item}</li>
+                                )}
                         </ul>
                     </div>
                     <div className="gallery">
                         <ul className="galleryProjectList">
-                            {projectList.map((item, index) => (
-                                <li key={index}>{item.projectName}</li>
-                            ))}
+                            {projects &&
+                                Array.from(projects.projects.keys()).map(
+                                    (item, index) => <li key={index}>{item}</li>
+                                )}
                         </ul>
                     </div>
                 </div>
