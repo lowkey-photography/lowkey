@@ -1,0 +1,14 @@
+@import "variables";
+
+.returnToTopButton {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    outline: inherit;
+    position: fixed;
+    cursor: pointer;
+    bottom: 20px;
+    right: 20px;
+    font-family: $font-primary;
+}

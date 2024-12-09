@@ -1,6 +1,8 @@
+import { ListPhotosResponse } from "lowkey-photos-list-worker/src";
 import { useEffect, useMemo, useState } from "react";
-import "./App.css";
-import { ListPhotosResponse, PhotoService } from "./service";
+import "../styles/App.scss";
+import { PhotoService } from "./service";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
     const [projects, setProjects] = useState({} as ListPhotosResponse);
@@ -29,22 +31,35 @@ function App() {
             {!loading && (
                 <div className="rootContainer">
                     <div className="sidebar">
-                        <div className="sidebarTitle">lowkey</div>
                         <ul className="sidebarProjectList">
+                            <li className="sidebarTitle">lowkey photography</li>
+                            <li
+                                key="home"
+                                className="sidebarProjectListItem mediaHide"
+                            >
+                                Home
+                            </li>
+                            <li
+                                key="placeholder"
+                                className="sidebarProjectListItemSeparator mediaHide"
+                            >
+                                -
+                            </li>
                             {projects &&
                                 Array.from(projects.projects.keys()).map(
-                                    (item, index) => <li key={index}>{item}</li>
+                                    (item, index) => (
+                                        <li
+                                            key={index}
+                                            className="sidebarProjectListItem mediaHide"
+                                        >
+                                            {item}
+                                        </li>
+                                    )
                                 )}
                         </ul>
                     </div>
-                    <div className="gallery">
-                        <ul className="galleryProjectList">
-                            {projects &&
-                                Array.from(projects.projects.keys()).map(
-                                    (item, index) => <li key={index}>{item}</li>
-                                )}
-                        </ul>
-                    </div>
+                    <div className="gallery"></div>
+                    <ScrollToTop />
                 </div>
             )}
         </>

@@ -1,12 +1,4 @@
-import { ListPhotosResponseItem } from "lowkey-photo-list-worker/src/index";
-
-export interface ListPhotosResponse {
-    projects: Map<string, Array<ListPhotosResponseItem>>;
-}
-
-export interface ListPhotosApiResponse {
-    items: Array<ListPhotosResponseItem>;
-}
+import { ListPhotosResponse } from "lowkey-photos-list-worker/src/index";
 
 export interface IPhotoService {
     listPhotos(): Promise<ListPhotosResponse>;
@@ -23,33 +15,16 @@ export class PhotoService implements IPhotoService {
         }
     }
 
-    projectListFromListPhotos(
-        response: ListPhotosApiResponse
-    ): ListPhotosResponse {
-        const projectMap = new Map<string, Array<ListPhotosResponseItem>>();
-        if (!response.items || response.items.length === 0) {
-            return { projects: projectMap };
-        }
-        response.items
-            .filter((i) => i.isValidGalleryImage)
-            .forEach((element) => {
-                const key = `${element.imageDetails.month} ${element.imageDetails.year} - ${element.imageDetails.album}`;
-                if (projectMap.has(key)) {
-                    projectMap.get(key)?.push(element);
-                } else {
-                    projectMap.set(key, [element]);
-                }
-            });
-        return { projects: projectMap };
-    }
-
     async listPhotos(): Promise<ListPhotosResponse> {
         const response = await fetch(`${this.baseUrl}/list-photos`);
         if (!response.ok) {
             throw new Error(`error listing photos: ${response.statusText}`);
         }
-        const data = (await response.json()) as Array<ListPhotosResponseItem>;
-        const projectList = this.projectListFromListPhotos({ items: data });
-        return projectList;
+        const data = await response.json();
+        const projectMap = new Map(Object.entries(data)) as Map<
+            string,
+            string[]
+        >;
+        return { projects: projectMap };
     }
 }

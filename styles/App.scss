@@ -1,0 +1,60 @@
+@import "variables";
+
+.rootContainer {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    margin: 1%;
+}
+
+.sidebar {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery {
+    grid-column: 2;
+}
+
+.sidebar .sidebarProjectList {
+    list-style-type: none;
+    font-weight: $font-light;
+    ul {
+        padding-left: 0;
+    }
+    li {
+        margin: 4% 0;
+    }
+    .sidebarTitle {
+        font-family: $font-primary;
+        font-weight: $font-bold;
+        padding-bottom: 4%;
+        margin-bottom: 8%;
+    }
+    margin-left: 25%;
+    width: 35%;
+}
+
+.sidebarProjectListItem {
+    width: fit-content;
+    font-weight: $font-light;
+    font-size: $font-smaller;
+    color: rgb(175, 171, 166);
+}
+
+.sidebarProjectListItem:hover {
+    letter-spacing: 0.075rem;
+    cursor: pointer;
+    font-weight: $font-bold;
+    text-decoration: underline;
+}
+
+.sidebarTitle {
+    font-family: $font-primary;
+}
+
+@media screen and (max-width: 768px) {
+    .mediaHide {
+        display: none;
+    }
+}

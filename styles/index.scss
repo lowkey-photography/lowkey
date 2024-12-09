@@ -1,11 +1,12 @@
+@import "variables";
+
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+    font-family: $font-primary;
+    font-weight: $font-regular;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    color: rgb(228, 224, 219);
+    background-color: #181a1b;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
