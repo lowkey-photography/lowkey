@@ -1,4 +1,6 @@
-import { ListPhotosResponse } from "lowkey-photos-list-worker/src/index";
+export interface ListPhotosResponse {
+    projects: Map<string, string[]>;
+}
 
 export interface IPhotoService {
     listPhotos(): Promise<ListPhotosResponse>;

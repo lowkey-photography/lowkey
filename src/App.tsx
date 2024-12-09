@@ -1,8 +1,7 @@
-import { ListPhotosResponse } from "lowkey-photos-list-worker/src";
 import { useEffect, useMemo, useState } from "react";
 import "../styles/App.scss";
-import { PhotoService } from "./service";
 import ScrollToTop from "./components/ScrollToTop";
+import { ListPhotosResponse, PhotoService } from "./service";
 
 function App() {
     const [projects, setProjects] = useState({} as ListPhotosResponse);

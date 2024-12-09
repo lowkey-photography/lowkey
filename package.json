@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lowkey-photos-list-worker": "github:lowkey-photography/lowkey-photos-list-worker",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.82.0"
