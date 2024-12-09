@@ -1,2 +1,5 @@
 name = "lowkey"
 pages_build_output_dir = "./dist"
+
+[vars]
+VITE_IMAGES_URL="https://images.lowkeyphotos.com"
