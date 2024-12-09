@@ -2,13 +2,30 @@ import { useEffect, useMemo, useState } from "react";
 import "../styles/App.scss";
 import ScrollToTop from "./components/ScrollToTop";
 import { ListPhotosResponse, PhotoService } from "./service";
+import Spinner from "./components/Spinner";
 
 function App() {
     const [projects, setProjects] = useState({} as ListPhotosResponse);
     const [loading, setLoading] = useState(true);
+    const [activeProjectKey, setProjectKey] = useState("");
+
     const photoService = useMemo(() => {
         return new PhotoService();
     }, []);
+
+    const getLandingPageData = () => {
+        if (!projects) return [];
+        const urls = new Map<string, string>();
+        projects.projects.forEach((v, k) => {
+            urls.set(k, v[0]);
+        });
+        return urls;
+    };
+
+    const makeImageUrl = (url: string) => {
+        const imageHost = import.meta.env.VITE_IMAGES_URL;
+        return `${imageHost}/${url}`;
+    };
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -22,11 +39,12 @@ function App() {
             }
         };
         fetchProjects();
+        setProjectKey("");
     }, [photoService]);
 
     return (
         <>
-            {loading && <div>Loading...</div>}
+            {loading && <Spinner />}
             {!loading && (
                 <div className="rootContainer">
                     <div className="sidebar">
@@ -35,6 +53,7 @@ function App() {
                             <li
                                 key="home"
                                 className="sidebarProjectListItem mediaHide"
+                                onClick={() => setProjectKey("")}
                             >
                                 Home
                             </li>
@@ -49,7 +68,12 @@ function App() {
                                     (item, index) => (
                                         <li
                                             key={index}
-                                            className="sidebarProjectListItem mediaHide"
+                                            className={
+                                                activeProjectKey === item
+                                                    ? "sidebarProjectListItem sidebarProjectListItemActive mediaHide"
+                                                    : "sidebarProjectListItem mediaHide"
+                                            }
+                                            onClick={() => setProjectKey(item)}
                                         >
                                             {item}
                                         </li>
@@ -57,7 +81,42 @@ function App() {
                                 )}
                         </ul>
                     </div>
-                    <div className="gallery"></div>
+                    <div className="gallery">
+                        {/* If a project isn't selected, show a 'gallery' by grabbing the first image from each collection */}
+                        {!activeProjectKey &&
+                            Array.from(getLandingPageData(), ([key, value]) => (
+                                <>
+                                    <div
+                                        className="homepageGalleryImageContainer"
+                                        onClick={() => setProjectKey(key)}
+                                    >
+                                        <img
+                                            src={makeImageUrl(value)}
+                                            alt={key}
+                                            className="homepageGalleryImage"
+                                        />
+                                        <div className="galleryImageText mediaHide">
+                                            {key}
+                                        </div>
+                                    </div>
+                                </>
+                            ))}
+                        {/* If a project is selected, display the collection */}
+                        {activeProjectKey &&
+                            Array.from(
+                                projects.projects.get(activeProjectKey) ?? []
+                            ).map((item) => (
+                                <>
+                                    <div className="collectionGalleryImageContainer">
+                                        <img
+                                            src={makeImageUrl(item)}
+                                            alt={item}
+                                            className="collectionGalleryImage"
+                                        />
+                                    </div>
+                                </>
+                            ))}
+                    </div>
                     <ScrollToTop />
                 </div>
             )}

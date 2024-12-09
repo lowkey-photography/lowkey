@@ -42,6 +42,11 @@
     color: rgb(175, 171, 166);
 }
 
+.sidebarProjectListItemActive {
+    font-weight: $font-bold;
+    text-decoration: underline;
+}
+
 .sidebarProjectListItem:hover {
     letter-spacing: 0.075rem;
     cursor: pointer;
@@ -53,8 +58,55 @@
     font-family: $font-primary;
 }
 
+.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.homepageGalleryImageContainer {
+    position: relative;
+    margin: 5px;
+    display: flex;
+    width: 45%;
+}
+
+.homepageGalleryImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.homepageGalleryImageContainer:hover {
+    cursor: pointer;
+}
+
+.homepageGalleryImageContainer:hover .homepageGalleryImage {
+    opacity: 0.5;
+}
+
+.homepageGalleryImageContainer:hover .galleryImageText {
+    opacity: 1;
+}
+
+.galleryImageText {
+    background-color: $background-color;
+    padding: 6px;
+    position: absolute;
+    opacity: 0;
+    left: 81.5%;
+    bottom: 4%;
+    transition: opacity 0.3s;
+    border: 1px solid;
+}
+
 @media screen and (max-width: 768px) {
     .mediaHide {
         display: none;
+    }
+    .rootContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 }

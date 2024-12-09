@@ -1,3 +1,5 @@
+const apiUrl: string = import.meta.env.VITE_API_URL;
+
 export interface ListPhotosResponse {
     projects: Map<string, string[]>;
 }
@@ -9,12 +11,7 @@ export interface IPhotoService {
 export class PhotoService implements IPhotoService {
     private baseUrl: string;
     constructor() {
-        if (import.meta.env.DEV) {
-            // set this so we can use production data for local dev too
-            this.baseUrl = "https://lowkeyphotos.com";
-        } else {
-            this.baseUrl = "";
-        }
+        this.baseUrl = apiUrl ?? "";
     }
 
     async listPhotos(): Promise<ListPhotosResponse> {

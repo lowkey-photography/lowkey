@@ -35,7 +35,7 @@ const ScrollToTop = () => {
                     aria-label="Scroll to top"
                     className="returnToTopButton"
                 >
-                    return to top
+                    ↑ scroll to top
                 </button>
             )}
         </>
