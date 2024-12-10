@@ -3,6 +3,7 @@ import "../styles/App.scss";
 import ScrollToTop from "./components/ScrollToTop";
 import { ListPhotosResponse, PhotoService } from "./service";
 import Spinner from "./components/Spinner";
+import { MailOutlined } from "@ant-design/icons";
 
 function App() {
     const [projects, setProjects] = useState({} as ListPhotosResponse);
@@ -50,19 +51,19 @@ function App() {
                     <div className="imageViewContainer"></div>
                     <div className="sidebar">
                         <ul className="sidebarProjectList">
-                            <li className="sidebarTitle">lowkey photography</li>
+                            <li className="sidebarTitle">Lowkey Photography</li>
                             <li
                                 key="home"
-                                className="sidebarProjectListItem mediaHide"
+                                className="sidebarProjectListItem"
                                 onClick={() => setProjectKey("")}
                             >
-                                Home
+                                HOME
                             </li>
                             <li
                                 key="placeholder"
                                 className="sidebarProjectListItemSeparator mediaHide"
                             >
-                                -
+                                -----------
                             </li>
                             {projects &&
                                 Array.from(projects.projects.keys()).map(
@@ -71,15 +72,29 @@ function App() {
                                             key={index}
                                             className={
                                                 activeProjectKey === item
-                                                    ? "sidebarProjectListItem sidebarProjectListItemActive mediaHide"
+                                                    ? "sidebarProjectListItem sidebarProjectListItemActive"
                                                     : "sidebarProjectListItem mediaHide"
                                             }
                                             onClick={() => setProjectKey(item)}
                                         >
-                                            {item}
+                                            {item.toUpperCase()}
                                         </li>
                                     )
                                 )}
+                            <li
+                                key="placeholder"
+                                className="sidebarProjectListItemSeparator mediaHide"
+                            >
+                                -----------
+                            </li>
+                            <li className="sidebarProjectListItemContact mediaHide">
+                                <a href="mailto:contactme@lowkeyphotos.com">
+                                    <MailOutlined
+                                        style={{ marginRight: "0.5rem" }}
+                                    />
+                                    contactme@lowkeyphotos.com
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div className="gallery">

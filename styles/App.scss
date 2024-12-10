@@ -2,7 +2,7 @@
 
 .rootContainer {
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 29% 71%;
     margin: 1%;
 }
 
@@ -26,36 +26,39 @@
         margin: 4% 0;
     }
     .sidebarTitle {
-        font-family: $font-primary;
+        font-family: $font-secondary;
         font-weight: $font-bold;
         padding-bottom: 4%;
         margin-bottom: 8%;
+        font-size: 1.75rem;
     }
     margin-left: 25%;
     width: 35%;
 }
 
-.sidebarProjectListItem {
+.sidebarProjectListItem,
+.sidebarProjectListItemContact {
     width: fit-content;
     font-weight: $font-light;
     font-size: $font-smaller;
-    color: rgb(175, 171, 166);
+    color: $primary-color;
+}
+
+.sidebarProjectListItemContact {
+    a {
+        color: $primary-color;
+        text-decoration: none;
+    }
 }
 
 .sidebarProjectListItemActive {
     font-weight: $font-bold;
-    text-decoration: underline;
 }
 
 .sidebarProjectListItem:hover {
     letter-spacing: 0.075rem;
     cursor: pointer;
     font-weight: $font-bold;
-    text-decoration: underline;
-}
-
-.sidebarTitle {
-    font-family: $font-primary;
 }
 
 .gallery {
@@ -70,6 +73,7 @@
     margin: 5px;
     display: flex;
     width: 45%;
+    height: fit-content;
 }
 
 .homepageGalleryImage,
@@ -110,5 +114,12 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+    }
+    .sidebar .sidebarProjectList {
+        margin-left: 0%;
+        .sidebarTitle {
+            font-size: 1.5rem;
+            width: fit-content;
+        }
     }
 }
