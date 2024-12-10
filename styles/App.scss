@@ -64,14 +64,16 @@
     flex-wrap: wrap;
 }
 
-.homepageGalleryImageContainer {
+.homepageGalleryImageContainer,
+.collectionGalleryImageContainer {
     position: relative;
     margin: 5px;
     display: flex;
     width: 45%;
 }
 
-.homepageGalleryImage {
+.homepageGalleryImage,
+.collectionGalleryImage {
     display: block;
     width: 100%;
     height: 100%;

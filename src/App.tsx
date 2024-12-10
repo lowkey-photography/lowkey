@@ -47,6 +47,7 @@ function App() {
             {loading && <Spinner />}
             {!loading && (
                 <div className="rootContainer">
+                    <div className="imageViewContainer"></div>
                     <div className="sidebar">
                         <ul className="sidebarProjectList">
                             <li className="sidebarTitle">lowkey photography</li>
