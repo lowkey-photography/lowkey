@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables";
 
 .rootContainer {
     display: grid;
@@ -18,7 +18,7 @@
 
 .sidebar .sidebarProjectList {
     list-style-type: none;
-    font-weight: $font-light;
+    font-weight: variables.$font-light;
     ul {
         padding-left: 0;
     }
@@ -26,8 +26,8 @@
         margin: 4% 0;
     }
     .sidebarTitle {
-        font-family: $font-secondary;
-        font-weight: $font-bold;
+        font-family: variables.$font-secondary;
+        font-weight: variables.$font-bold;
         padding-bottom: 4%;
         margin-bottom: 8%;
         font-size: 1.75rem;
@@ -39,26 +39,27 @@
 .sidebarProjectListItem,
 .sidebarProjectListItemContact {
     width: fit-content;
-    font-weight: $font-light;
-    font-size: $font-smaller;
-    color: $primary-color;
+    font-weight: variables.$font-light;
+    font-size: variables.$font-smaller;
+    color: variables.$primary-color;
 }
 
 .sidebarProjectListItemContact {
     a {
-        color: $primary-color;
+        color: variables.$primary-color;
         text-decoration: none;
     }
 }
 
 .sidebarProjectListItemActive {
-    font-weight: $font-bold;
+    font-weight: variables.$font-bold;
+    letter-spacing: 0.075rem;
 }
 
 .sidebarProjectListItem:hover {
     letter-spacing: 0.075rem;
     cursor: pointer;
-    font-weight: $font-bold;
+    font-weight: variables.$font-bold;
     transition: 0.3s;
 }
 
@@ -105,7 +106,7 @@
 }
 
 .galleryImageText {
-    background-color: $background-color;
+    background-color: variables.$background-color;
     padding: 6px;
     position: absolute;
     opacity: 0;

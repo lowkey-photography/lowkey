@@ -1,12 +1,12 @@
-@import "variables";
+@use "variables";
 
 :root {
-    font-family: $font-primary;
-    font-weight: $font-regular;
+    font-family: variables.$font-primary;
+    font-weight: variables.$font-regular;
 
     color-scheme: light dark;
-    color: $primary-color;
-    background-color: $background-color;
+    color: variables.$primary-color;
+    background-color: variables.$background-color;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
