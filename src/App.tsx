@@ -16,7 +16,8 @@ const photoswipeOptions: PhotoSwipeOptions = {
     loop: true,
     zoom: false,
     initialZoomLevel: "fit",
-    secondaryZoomLevel: 0.9,
+    maxZoomLevel: "fit",
+    secondaryZoomLevel: "fit",
 };
 
 function App() {
